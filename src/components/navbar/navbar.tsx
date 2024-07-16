@@ -76,7 +76,7 @@ const callsToAction = [
 ];
 
 export const Navbar = () => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, logout } = useAuth();
   const pathname = usePathname();
   const { user } = useUser();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -89,7 +89,7 @@ export const Navbar = () => {
         <div className="flex lg:flex-1">
           <Link href={siteUrls.home} className="-m-1.5 p-1.5">
             <span className="sr-only">GrovPay</span>
-            <img alt="GrovPay" src={logo.src} className="h-8 w-auto" />
+            <img alt="GrovPay" src={logo.src} className="h-10 w-auto" />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -100,7 +100,7 @@ export const Navbar = () => {
             <span className="sr-only">Open main menu</span>
             <Bars3BottomRightIcon
               aria-hidden="true"
-              className="h-6 w-6 text-white"
+              className="h-8 w-8 text-white"
             />
           </button>
         </div>
@@ -224,7 +224,8 @@ export const Navbar = () => {
             ) : (
               <Link
                 href={
-                  siteUrls.login + `?redirect=${encodeURIComponent(pathname)}`
+                  siteUrls.login
+                  // + `?redirect=${encodeURIComponent(pathname)}`
                 }
                 className="text-[14px] leading-6 text-white">
                 Login / Sign up
@@ -247,7 +248,7 @@ export const Navbar = () => {
           <div className="flex items-center justify-between">
             <Link href={siteUrls.home} className="-m-1.5 p-1.5">
               <span className="sr-only">GrovPay</span>
-              <img alt="GrovPay" src={logo.src} className="h-8 w-auto" />
+              <img alt="GrovPay" src={logo.src} className="h-10 w-auto" />
             </Link>
             <button
               type="button"
@@ -261,6 +262,7 @@ export const Navbar = () => {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 <Link
+                  onClick={() => setMobileMenuOpen(false)}
                   href={siteUrls.home}
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                   Home
@@ -276,6 +278,7 @@ export const Navbar = () => {
                   <DisclosurePanel className="mt-2 space-y-2">
                     {[...products, ...callsToAction].map((item) => (
                       <DisclosureButton
+                        onClick={() => setMobileMenuOpen(false)}
                         key={item.name}
                         as="a"
                         href={item.href}
@@ -296,6 +299,7 @@ export const Navbar = () => {
                   <DisclosurePanel className="mt-2 space-y-2">
                     {[...products, ...callsToAction].map((item) => (
                       <DisclosureButton
+                        onClick={() => setMobileMenuOpen(false)}
                         key={item.name}
                         as="a"
                         href={item.href}
@@ -306,26 +310,35 @@ export const Navbar = () => {
                   </DisclosurePanel>
                 </Disclosure>
                 <a
+                  onClick={() => setMobileMenuOpen(false)}
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                   About us
                 </a>
                 <a
+                  onClick={() => setMobileMenuOpen(false)}
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                   Blog
                 </a>
                 <a
+                  onClick={() => setMobileMenuOpen(false)}
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                   Contact us
                 </a>
                 <a
+                  onClick={() => setMobileMenuOpen(false)}
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                   Help
                 </a>
-                <div className="-mx-3 flex items-center gap-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 text-danger-500 hover:bg-gray-50">
+                <div
+                  className="-mx-3 flex items-center gap-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 text-danger-500 hover:bg-gray-50"
+                  onClick={() => {
+                    logout();
+                    setMobileMenuOpen(false);
+                  }}>
                   <span>Logout</span>{" "}
                   <ArrowLeftStartOnRectangleIcon className="w-6" />
                 </div>
@@ -340,11 +353,12 @@ export const Navbar = () => {
                   <p>{user?.fullName}</p>
                 ) : (
                   <Link
+                    onClick={() => setMobileMenuOpen(false)}
                     href={
-                      siteUrls.login +
-                      `?redirect=${encodeURIComponent(pathname)}`
+                      siteUrls.login
+                      // + `?redirect=${encodeURIComponent(pathname)}`
                     }
-                    className="text-[14px] leading-6 text-white">
+                    className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                     Login / Sign up
                   </Link>
                 )}

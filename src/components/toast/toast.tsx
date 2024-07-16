@@ -68,13 +68,13 @@ export const AppToastBar = () => {
                   <div>{icon}</div>
 
                   <div className="flex flex-col text-left justify-start items-start">
-                    <div className="text-[18px] text-[#ffffff] font-semibold font-outfit leading-[100%] mb-1">
+                    <div className="text-[15px] text-[#ffffff] font-semibold font-outfit leading-[100%] mb-1">
                       {t.type === "loading" && "Loading"}
                       {t.type === "success" && "Success"}
                       {t.type === "error" && "Error"}
                       {t.type === "blank" && "Info"}
                     </div>
-                    <div className="text-[16px] text-[#ffffff] font-medium font-outfit leading-[100%] text-left w-fit [&>*]:!mx-0">
+                    <div className="text-[13px] text-[#ffffff] font-medium font-outfit leading-[100%] text-left w-fit [&>*]:!mx-0">
                       {message}
                     </div>
                   </div>

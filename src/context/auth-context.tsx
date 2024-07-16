@@ -3,6 +3,7 @@
 import * as React from "react";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
+import toast from "react-hot-toast";
 
 // Define types and interfaces
 interface AuthContextType {
@@ -56,6 +57,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const logout = () => {
     Cookies.remove("access_token");
     setIsLoggedIn(false);
+    toast("Logged out");
   };
 
   const setToken = (access_token: string) => {
