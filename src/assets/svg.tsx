@@ -1,5 +1,5 @@
 import React from "react";
-export const ChevronDown = ({ fill, size, height, width, ...props }) => {
+export const ChevronDown = ({ fill, size, height, width, ...props }: any) => {
   return (
     <svg
       fill="none"
@@ -20,7 +20,7 @@ export const ChevronDown = ({ fill, size, height, width, ...props }) => {
   );
 };
 
-export const Lock = ({ fill, size, height, width, ...props }) => {
+export const Lock = ({ fill, size, height, width, ...props }: any) => {
   const color = fill;
 
   return (
@@ -66,7 +66,7 @@ export const Lock = ({ fill, size, height, width, ...props }) => {
   );
 };
 
-export const Activity = ({ fill, size, height, width, ...props }) => {
+export const Activity = ({ fill, size, height, width, ...props }: any) => {
   return (
     <svg
       height={size || height || 24}
@@ -95,7 +95,7 @@ export const Flash = ({
   height,
   width,
   ...props
-}) => {
+}: any) => {
   return (
     <svg
       fill="none"
@@ -122,7 +122,7 @@ export const Server = ({
   height,
   width,
   ...props
-}) => {
+}: any) => {
   return (
     <svg
       fill="none"
@@ -148,7 +148,7 @@ export const TagUser = ({
   height,
   width,
   ...props
-}) => {
+}: any) => {
   return (
     <svg
       fill="none"
@@ -182,7 +182,7 @@ export const Scale = ({
   height,
   width,
   ...props
-}) => {
+}: any) => {
   return (
     <svg
       fill="none"
