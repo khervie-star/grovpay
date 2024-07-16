@@ -14,7 +14,8 @@ const config: Config = {
       fontFamily: {
         inter: ["var(--font-inter)"],
         poppins: ["var(--font-poppins)"],
-        outfit: ["var(--font-outfit)"]
+        outfit: ["var(--font-outfit)"],
+        work_sans: ["var(--font-work_sans)"]
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

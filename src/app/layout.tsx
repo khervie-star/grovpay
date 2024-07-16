@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Poppins, Outfit } from "next/font/google";
+import { Inter, Poppins, Outfit, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { GlobalProvider } from "@/provider";
 import { Navbar, Footer } from "@/components";
@@ -21,6 +21,12 @@ const outfit = Outfit({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-outfit"
+});
+
+const work_sans = Work_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-work_sans"
 });
 
 export const metadata: Metadata = {
@@ -56,7 +62,7 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body
-        className={`${inter.variable} ${poppins.variable} ${outfit.variable} font-outfit`}>
+        className={`${inter.variable} ${poppins.variable} ${outfit.variable} ${work_sans.variable} font-work_sans`}>
         <GlobalProvider>
           <Navbar />
           {children}

@@ -333,15 +333,18 @@ export const Navbar = () => {
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                   Help
                 </a>
-                <div
-                  className="-mx-3 flex items-center gap-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 text-danger-500 hover:bg-gray-50"
-                  onClick={() => {
-                    logout();
-                    setMobileMenuOpen(false);
-                  }}>
-                  <span>Logout</span>{" "}
-                  <ArrowLeftStartOnRectangleIcon className="w-6" />
-                </div>
+
+                {isLoggedIn && (
+                  <div
+                    className="-mx-3 flex items-center gap-3 rounded-lg px-3 py-2 text-base font-semibold leading-7 text-danger-500 hover:bg-gray-50"
+                    onClick={() => {
+                      logout();
+                      setMobileMenuOpen(false);
+                    }}>
+                    <span>Logout</span>{" "}
+                    <ArrowLeftStartOnRectangleIcon className="w-6" />
+                  </div>
+                )}
               </div>
               <div className="py-6 flex items-center gap-2">
                 <Avatar
