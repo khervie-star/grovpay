@@ -30,8 +30,8 @@ const validationSchema = Yup.object().shape({
 
 const Login = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect");
+  // const searchParams = useSearchParams();
+  // const redirect = searchParams.get("redirect");
   const { setUser } = useUser();
   const { setToken, isLoggedIn } = useAuth();
   const [isVisible, setIsVisible] = React.useState(false);
@@ -64,11 +64,11 @@ const Login = () => {
 
       toast.success("Login Successful");
 
-      const redirectUrl = redirect
-        ? decodeURIComponent(redirect as string)
-        : siteUrls.home;
+      // const redirectUrl = redirect
+      //   ? decodeURIComponent(redirect as string)
+      //   : siteUrls.home;
 
-      router.push(redirectUrl);
+      router.push(siteUrls.home);
     },
     onError(error: any) {
       console.log(error);
