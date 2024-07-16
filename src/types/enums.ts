@@ -1,0 +1,13 @@
+export enum RegistrationStatus {
+  STEP_1 = "STEP_1",
+  STEP_2 = "STEP_2",
+  LAST_STEP = "LAST_STEP",
+  COMPLETED = "COMPLETED"
+}
+
+export enum IdTypes {
+  DRIVERS_LICENSE,
+  NATIONAL_ID_NUMBER,
+  INTERNATIONAL_PASSPORT,
+  VOTERS_CARD
+}
