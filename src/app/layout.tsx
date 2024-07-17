@@ -30,8 +30,8 @@ const work_sans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "GrovPay",
-  description: "GrovPay"
+  title: "GroPay",
+  description: "GroPay"
 };
 
 export default function RootLayout({

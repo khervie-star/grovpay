@@ -171,7 +171,7 @@ export const Footer = () => {
         <div className="flex items-center justify-between">
           <a href="#" className="flex items-center gap-2">
             <img className="w-auto h-8" src={logo.src} alt="" />
-            <p className="text-app_green font-semibold text-[20px]">GrovPay</p>
+            <p className="text-app_green font-semibold text-[20px]">GroPay</p>
           </a>
 
           <div className="flex -mx-2">

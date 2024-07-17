@@ -98,11 +98,9 @@ export const Navbar = () => {
             <Link
               href={siteUrls.home}
               className="-m-1.5 p-1.5 flex items-center gap-2">
-              <span className="sr-only">GrovPay</span>
-              <img alt="GrovPay" src={logo.src} className="h-11 w-auto" />
-              <p className="font-semibold text-base text-primary-500">
-                GrovPay
-              </p>
+              <span className="sr-only">GroPay</span>
+              <img alt="GroPay" src={logo.src} className="h-11 w-auto" />
+              <p className="font-semibold text-base text-primary-500">GroPay</p>
             </Link>
           </div>
           <div className="flex lg:hidden gap-3">
@@ -342,8 +340,8 @@ export const Navbar = () => {
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 transition-all duration-400">
           <div className="flex items-center justify-between">
             <Link href={siteUrls.home} className="-m-1.5 p-1.5">
-              <span className="sr-only">GrovPay</span>
-              <img alt="GrovPay" src={logo.src} className="h-11 w-auto" />
+              <span className="sr-only">GroPay</span>
+              <img alt="GroPay" src={logo.src} className="h-11 w-auto" />
             </Link>
             <button
               type="button"

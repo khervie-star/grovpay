@@ -44,7 +44,7 @@ const AboutPage = () => {
         <div className="bg-white shadow-lg rounded-lg p-8">
           <section className="mb-12">
             <h2 className="text-2xl sm:text-3xl font-semibold text-[#4B8957] mb-4">
-              Why GrovPay
+              Why GroPay
             </h2>
             <p className="text-gray-500 mb-4 text-[15px]">
               Instant Online recharge and Bill Payments Iisque persius

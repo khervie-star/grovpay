@@ -435,7 +435,7 @@ export default function Home() {
             {/* Right column: Text and download buttons */}
             <div className="w-full md:w-1/2 text-center md:text-left">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-app_green">
-                Download Our GrovPay Mobile App Now
+                Download Our GroPay Mobile App Now
               </h2>
               <p className="text-lg mb-8">
                 Download our app for the fastest, most convenient way to
