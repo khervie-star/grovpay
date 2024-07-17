@@ -1,10 +1,59 @@
 import React from "react";
 import logo from "@/assets/logo.png";
+import { IoLockClosed } from "react-icons/io5";
+import { FaThumbsUp } from "react-icons/fa";
+import { MdOutlineSupport } from "react-icons/md";
+import { HiMegaphone } from "react-icons/hi2";
+import Link from "next/link";
 
 export const Footer = () => {
   return (
     <footer className="bg-white dark:bg-gray-900">
       <div className="container px-6 py-12 mx-auto">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
+          <div className="flex flex-col gap-4 items-center text-center">
+            <IoLockClosed className="text-[36px] text-app_green" />
+            <p className="text-app_green text-[21px] font-semibold">
+              100% Secure Payments
+            </p>
+            <p className="text-[15px] text-gray-600">
+              Moving your card details to a much more secured place.
+            </p>
+          </div>
+          <div className="flex flex-col gap-4 items-center text-center">
+            <FaThumbsUp className="text-[36px] text-app_green" />
+            <p className="text-app_green text-[21px] font-semibold">
+              Trust pay
+            </p>
+            <p className="text-[15px] text-gray-600">
+              100% Payment Protection. Easy Return Policy.{" "}
+            </p>
+          </div>
+          <div className="flex flex-col gap-4 items-center text-center">
+            <MdOutlineSupport className="text-[36px] text-app_green" />
+            <p className="text-app_green text-[21px] font-semibold">
+              Refer & Earn
+            </p>
+            <p className="text-[15px] text-gray-600">
+              Invite a friend to sign up and earn up to $100.{" "}
+            </p>
+          </div>
+          <div className="flex flex-col gap-4 items-center text-center">
+            <HiMegaphone className="text-[36px] text-app_green" />
+            <p className="text-app_green text-[21px] font-semibold">
+              24X7 Support
+            </p>
+            <p className="text-[15px] text-gray-600">
+              We&apos;re here to help. Have a query and need help?{" "}
+              <Link
+                href="#"
+                className="!no-underline font-medium text-app_green-500">
+                Click here
+              </Link>
+            </p>
+          </div>
+        </div>
+        <hr className="my-6 border-gray-200 md:my-8 dark:border-gray-700" />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
           <div>
             <p className="font-semibold text-gray-800 dark:text-white">
