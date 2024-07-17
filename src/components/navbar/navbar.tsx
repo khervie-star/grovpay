@@ -13,10 +13,8 @@ import {
   PopoverPanel
 } from "@headlessui/react";
 import {
-  ArrowLeftEndOnRectangleIcon,
   ArrowLeftStartOnRectangleIcon,
   ArrowPathIcon,
-  ArrowPathRoundedSquareIcon,
   Bars3BottomRightIcon,
   ChartPieIcon,
   CursorArrowRaysIcon,
@@ -25,13 +23,20 @@ import {
   XMarkIcon
 } from "@heroicons/react/24/outline";
 import {
-  Bars3BottomLeftIcon,
   ChevronDownIcon,
   PhoneIcon,
   PlayCircleIcon
 } from "@heroicons/react/20/solid";
 import logo from "@/assets/logo.png";
-import { Avatar } from "@nextui-org/react";
+import {
+  Avatar,
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+  User
+} from "@nextui-org/react";
 import { siteUrls } from "@/config";
 import Link from "next/link";
 import { useAuth, useUser } from "@/context";
@@ -82,163 +87,201 @@ export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-app_green">
-      <nav
-        aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-        <div className="flex lg:flex-1">
-          <Link href={siteUrls.home} className="-m-1.5 p-1.5">
-            <span className="sr-only">GrovPay</span>
-            <img alt="GrovPay" src={logo.src} className="h-10 w-auto" />
-          </Link>
-        </div>
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(true)}
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-            <span className="sr-only">Open main menu</span>
-            <Bars3BottomRightIcon
-              aria-hidden="true"
-              className="h-8 w-8 text-white"
-            />
-          </button>
-        </div>
-        <PopoverGroup className="hidden lg:flex items-center lg:gap-x-8 text-white">
-          <Link href="#" className="text-[14px] leading-6">
-            Home
-          </Link>
-          <Popover className="relative">
-            <PopoverButton className="flex items-center gap-x-1 text-[14px] leading-6">
-              Recharge & Bill payment
-              <ChevronDownIcon
-                aria-hidden="true"
-                className="h-5 w-5 flex-none text-white"
-              />
-            </PopoverButton>
-
-            <PopoverPanel
-              transition
-              className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in">
-              <div className="p-4">
-                {products.map((item) => (
-                  <div
-                    key={item.name}
-                    className="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50">
-                    <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                      <item.icon
-                        aria-hidden="true"
-                        className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-                      />
-                    </div>
-                    <div className="flex-auto">
-                      <a href={item.href} className="block  text-gray-900">
-                        {item.name}
-                        <span className="absolute inset-0" />
-                      </a>
-                      <p className="mt-1 text-gray-600">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                {callsToAction.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="flex items-center justify-center gap-x-2.5 p-3 text-base  leading-6 text-gray-900 hover:bg-gray-100">
-                    <item.icon
-                      aria-hidden="true"
-                      className="h-5 w-5 flex-none text-gray-400"
-                    />
-                    {item.name}
-                  </a>
-                ))}
-              </div>
-            </PopoverPanel>
-          </Popover>
-          <Popover className="relative">
-            <PopoverButton className="flex items-center gap-x-1 text-[14px] leading-6">
-              Booking
-              <ChevronDownIcon
-                aria-hidden="true"
-                className="h-5 w-5 flex-none text-white"
-              />
-            </PopoverButton>
-
-            <PopoverPanel
-              transition
-              className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in">
-              <div className="p-4">
-                {products.map((item) => (
-                  <div
-                    key={item.name}
-                    className="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50">
-                    <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                      <item.icon
-                        aria-hidden="true"
-                        className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-                      />
-                    </div>
-                    <div className="flex-auto">
-                      <a href={item.href} className="block  text-gray-900">
-                        {item.name}
-                        <span className="absolute inset-0" />
-                      </a>
-                      <p className="mt-1 text-gray-600">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                {callsToAction.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="flex items-center justify-center gap-x-2.5 p-3 text-base  leading-6 text-gray-900 hover:bg-gray-100">
-                    <item.icon
-                      aria-hidden="true"
-                      className="h-5 w-5 flex-none text-gray-400"
-                    />
-                    {item.name}
-                  </a>
-                ))}
-              </div>
-            </PopoverPanel>
-          </Popover>
-          <a href="#" className="text-[14px] leading-6">
-            About us
-          </a>
-          <a href="#" className="text-[14px] leading-6">
-            Blog
-          </a>
-          <a href="#" className="text-[14px] leading-6">
-            Contact us
-          </a>
-          <a href="#" className="text-[14px] leading-6">
-            Help
-          </a>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-2">
-            {isLoggedIn ? (
-              <p>{user?.fullName}</p>
-            ) : (
-              <Link
-                href={
-                  siteUrls.login
-                  // + `?redirect=${encodeURIComponent(pathname)}`
-                }
-                className="text-[14px] leading-6 text-white">
-                Login / Sign up
-              </Link>
-            )}
-            <Avatar
-              showFallback
-              src="https://images.unsplash.com/broken"
-              size="sm"
-            />
+    <header className="bg-white text-gray-600 border-b">
+      <div className="container mx-auto">
+        <nav
+          aria-label="Global"
+          className="mx-auto flex w-full items-center justify-between p-6 lg:px-8">
+          <div className="flex lg:flex-1">
+            <Link
+              href={siteUrls.home}
+              className="-m-1.5 p-1.5 flex items-center gap-2">
+              <span className="sr-only">GrovPay</span>
+              <img alt="GrovPay" src={logo.src} className="h-11 w-auto" />
+              <p className="font-semibold text-base text-primary-500">
+                GrovPay
+              </p>
+            </Link>
           </div>
-        </PopoverGroup>
-      </nav>
+          <div className="flex lg:hidden">
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(true)}
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+              <span className="sr-only">Open main menu</span>
+              <Bars3BottomRightIcon aria-hidden="true" className="h-8 w-8" />
+            </button>
+          </div>
+          <PopoverGroup className="hidden lg:flex items-center lg:gap-x-8">
+            <Link href="#" className="text-[14px] leading-6">
+              Home
+            </Link>
+            <Popover className="relative">
+              <PopoverButton className="flex items-center gap-x-1 text-[14px] leading-6">
+                Recharge & Bill payment
+                <ChevronDownIcon
+                  aria-hidden="true"
+                  className="h-5 w-5 flex-none"
+                />
+              </PopoverButton>
+
+              <PopoverPanel
+                transition
+                className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in">
+                <div className="p-4">
+                  {products.map((item) => (
+                    <div
+                      key={item.name}
+                      className="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50">
+                      <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                        <item.icon
+                          aria-hidden="true"
+                          className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                        />
+                      </div>
+                      <div className="flex-auto">
+                        <a href={item.href} className="block  text-gray-900">
+                          {item.name}
+                          <span className="absolute inset-0" />
+                        </a>
+                        <p className="mt-1 text-gray-600">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                  {callsToAction.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="flex items-center justify-center gap-x-2.5 p-3 text-base  leading-6 text-gray-900 hover:bg-gray-100">
+                      <item.icon
+                        aria-hidden="true"
+                        className="h-5 w-5 flex-none text-gray-400"
+                      />
+                      {item.name}
+                    </a>
+                  ))}
+                </div>
+              </PopoverPanel>
+            </Popover>
+            <Popover className="relative">
+              <PopoverButton className="flex items-center gap-x-1 text-[14px] leading-6">
+                Booking
+                <ChevronDownIcon
+                  aria-hidden="true"
+                  className="h-5 w-5 flex-none"
+                />
+              </PopoverButton>
+
+              <PopoverPanel
+                transition
+                className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in">
+                <div className="p-4">
+                  {products.map((item) => (
+                    <div
+                      key={item.name}
+                      className="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50">
+                      <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                        <item.icon
+                          aria-hidden="true"
+                          className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                        />
+                      </div>
+                      <div className="flex-auto">
+                        <a href={item.href} className="block  text-gray-900">
+                          {item.name}
+                          <span className="absolute inset-0" />
+                        </a>
+                        <p className="mt-1 text-gray-600">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                  {callsToAction.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="flex items-center justify-center gap-x-2.5 p-3 text-base  leading-6 text-gray-900 hover:bg-gray-100">
+                      <item.icon
+                        aria-hidden="true"
+                        className="h-5 w-5 flex-none text-gray-400"
+                      />
+                      {item.name}
+                    </a>
+                  ))}
+                </div>
+              </PopoverPanel>
+            </Popover>
+            <a href="#" className="text-[14px] leading-6">
+              About us
+            </a>
+            <a href="#" className="text-[14px] leading-6">
+              Blog
+            </a>
+            <a href="#" className="text-[14px] leading-6">
+              Contact us
+            </a>
+
+            <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-2">
+              {isLoggedIn ? (
+                <div className="flex items-center gap-3">
+                  <Dropdown placement="bottom-start">
+                    <DropdownTrigger>
+                      <User
+                        as="button"
+                        avatarProps={{
+                          isBordered: true,
+                          src: "https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                        }}
+                        className="transition-transform"
+                        description={user?.email}
+                        name={user?.fullName}
+                      />
+                    </DropdownTrigger>
+                    <DropdownMenu aria-label="User Actions" variant="flat">
+                      <DropdownItem key="profile" className="h-14 gap-2">
+                        <p className="font-bold">Signed in as</p>
+                        <p className="font-bold">{user?.email}</p>
+                      </DropdownItem>
+                      <DropdownItem key="settings">My Account</DropdownItem>
+                      <DropdownItem key="team_settings">Favorites</DropdownItem>
+                      <DropdownItem key="analytics">Payments</DropdownItem>
+                      <DropdownItem key="system">Order history</DropdownItem>
+                      <DropdownItem key="system">Notifications</DropdownItem>
+                      <DropdownItem key="configurations">Security</DropdownItem>
+                      <DropdownItem key="help_and_feedback">
+                        Help & Feedback
+                      </DropdownItem>
+                      <DropdownItem key="logout" color="danger">
+                        Log Out
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+                </div>
+              ) : (
+                <div className="flex items-center gap-3">
+                  <Button
+                    href={siteUrls.login}
+                    as={Link}
+                    color="primary"
+                    variant="flat">
+                    Login
+                  </Button>
+                  <Button
+                    href={siteUrls.signUp}
+                    as={Link}
+                    color="primary"
+                    variant="solid">
+                    Sign up
+                  </Button>
+                </div>
+              )}
+            </div>
+          </PopoverGroup>
+        </nav>
+      </div>
       <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
@@ -248,7 +291,7 @@ export const Navbar = () => {
           <div className="flex items-center justify-between">
             <Link href={siteUrls.home} className="-m-1.5 p-1.5">
               <span className="sr-only">GrovPay</span>
-              <img alt="GrovPay" src={logo.src} className="h-10 w-auto" />
+              <img alt="GrovPay" src={logo.src} className="h-11 w-auto" />
             </Link>
             <button
               type="button"
@@ -327,12 +370,6 @@ export const Navbar = () => {
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                   Contact us
                 </a>
-                <a
-                  onClick={() => setMobileMenuOpen(false)}
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                  Help
-                </a>
 
                 {isLoggedIn && (
                   <div
@@ -347,23 +384,66 @@ export const Navbar = () => {
                 )}
               </div>
               <div className="py-6 flex items-center gap-2">
-                <Avatar
-                  showFallback
-                  src="https://images.unsplash.com/broken"
-                  size="sm"
-                />
                 {isLoggedIn ? (
-                  <p>{user?.fullName}</p>
+                  <div className="flex gap-3 items-center">
+                    <Dropdown placement="bottom-start">
+                      <DropdownTrigger>
+                        <User
+                          as="button"
+                          avatarProps={{
+                            isBordered: true,
+                            src: "https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                          }}
+                          className="transition-transform"
+                          description={user?.email}
+                          name={user?.fullName}
+                        />
+                      </DropdownTrigger>
+                      <DropdownMenu aria-label="User Actions" variant="flat">
+                        <DropdownItem key="profile" className="h-14 gap-2">
+                          <p className="font-bold">Signed in as</p>
+                          <p className="font-bold">{user?.email}</p>
+                        </DropdownItem>
+                        <DropdownItem key="settings">My Account</DropdownItem>
+                        <DropdownItem key="team_settings">
+                          Favorites
+                        </DropdownItem>
+                        <DropdownItem key="analytics">Payments</DropdownItem>
+                        <DropdownItem key="system">Order history</DropdownItem>
+                        <DropdownItem key="system">Notifications</DropdownItem>
+                        <DropdownItem key="configurations">
+                          Security
+                        </DropdownItem>
+                        <DropdownItem key="help_and_feedback">
+                          Help & Feedback
+                        </DropdownItem>
+                        <DropdownItem key="logout" color="danger">
+                          Log Out
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </Dropdown>
+                  </div>
                 ) : (
-                  <Link
-                    onClick={() => setMobileMenuOpen(false)}
-                    href={
-                      siteUrls.login
-                      // + `?redirect=${encodeURIComponent(pathname)}`
-                    }
-                    className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                    Login / Sign up
-                  </Link>
+                  <div className="flex items-center gap-3 !w-full">
+                    <Button
+                      onClick={() => setMobileMenuOpen(false)}
+                      fullWidth
+                      href={siteUrls.login}
+                      as={Link}
+                      color="primary"
+                      variant="flat">
+                      Login
+                    </Button>
+                    <Button
+                      onClick={() => setMobileMenuOpen(false)}
+                      fullWidth
+                      href={siteUrls.signUp}
+                      as={Link}
+                      color="primary"
+                      variant="solid">
+                      Sign up
+                    </Button>
+                  </div>
                 )}
               </div>
             </div>
