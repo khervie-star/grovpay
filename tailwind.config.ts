@@ -80,6 +80,9 @@ const config: Config = {
               800: "#b3d5ba",
               900: "#d9eadc",
               foreground: "#ffffff"
+            },
+            secondary: {
+              DEFAULT: "#fffff"
             }
             // ... you can add other custom colors here
           }
@@ -99,8 +102,10 @@ const config: Config = {
               800: "#b3d5ba",
               900: "#d9eadc",
               foreground: "#ffffff"
+            },
+            secondary: {
+              DEFAULT: "#fffff"
             }
-            // ... you can add other custom colors here
           }
         }
       }

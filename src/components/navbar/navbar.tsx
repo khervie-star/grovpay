@@ -86,6 +86,8 @@ export const Navbar = () => {
   const { user } = useUser();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  console.log(pathname, siteUrls.about);
+
   return (
     <header className="bg-white text-gray-600 border-b">
       <div className="container mx-auto">
@@ -113,7 +115,9 @@ export const Navbar = () => {
             </button>
           </div>
           <PopoverGroup className="hidden lg:flex items-center lg:gap-x-8">
-            <Link href="#" className="text-[14px] leading-6">
+            <Link
+              href={siteUrls.home}
+              className={`text-[14px] leading-6 hover:bg-gray-50 ${pathname == siteUrls.home && "font-semibold text-app_green text-base"} `}>
               Home
             </Link>
             <Popover className="relative">
@@ -214,15 +218,21 @@ export const Navbar = () => {
                 </div>
               </PopoverPanel>
             </Popover>
-            <a href="#" className="text-[14px] leading-6">
+            <Link
+              href={siteUrls.about}
+              className={`text-[14px] leading-6 hover:bg-gray-50 ${pathname == siteUrls.about && "font-semibold text-app_green text-base"} `}>
               About us
-            </a>
-            <a href="#" className="text-[14px] leading-6">
+            </Link>
+            <Link
+              href={siteUrls.blog}
+              className={`text-[14px] leading-6 hover:bg-gray-50 ${pathname == siteUrls.blog && "font-semibold text-app_green text-base"} `}>
               Blog
-            </a>
-            <a href="#" className="text-[14px] leading-6">
+            </Link>
+            <Link
+              href={siteUrls.contact}
+              className={`text-[14px] leading-6 hover:bg-gray-50 ${pathname == siteUrls.contact && "font-semibold text-app_green text-base"} `}>
               Contact us
-            </a>
+            </Link>
 
             <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-2">
               {isLoggedIn ? (
@@ -287,7 +297,7 @@ export const Navbar = () => {
         onClose={setMobileMenuOpen}
         className="lg:hidden">
         <div className="fixed inset-0 z-10" />
-        <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 transition-all duration-400">
           <div className="flex items-center justify-between">
             <Link href={siteUrls.home} className="-m-1.5 p-1.5">
               <span className="sr-only">GrovPay</span>
@@ -307,7 +317,7 @@ export const Navbar = () => {
                 <Link
                   onClick={() => setMobileMenuOpen(false)}
                   href={siteUrls.home}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                  className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50 ${pathname == "siteUrls.about" ? "font-semibold text-app_green" : "text-gray-900"} `}>
                   Home
                 </Link>
                 <Disclosure as="div" className="-mx-3">
@@ -352,24 +362,25 @@ export const Navbar = () => {
                     ))}
                   </DisclosurePanel>
                 </Disclosure>
-                <a
+
+                <Link
                   onClick={() => setMobileMenuOpen(false)}
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                  href={siteUrls.about}
+                  className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50 ${pathname == "siteUrls.about" ? "font-semibold text-app_green" : "text-gray-900"} `}>
                   About us
-                </a>
-                <a
+                </Link>
+                <Link
                   onClick={() => setMobileMenuOpen(false)}
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                  href={siteUrls.blog}
+                  className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50 ${pathname == "siteUrls.about" ? "font-semibold text-app_green" : "text-gray-900"} `}>
                   Blog
-                </a>
-                <a
+                </Link>
+                <Link
                   onClick={() => setMobileMenuOpen(false)}
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
+                  href={siteUrls.contact}
+                  className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50 ${pathname == "siteUrls.about" ? "font-semibold text-app_green" : "text-gray-900"} `}>
                   Contact us
-                </a>
+                </Link>
 
                 {isLoggedIn && (
                   <div
