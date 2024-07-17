@@ -105,7 +105,7 @@ export const Navbar = () => {
               </p>
             </Link>
           </div>
-          <div className="flex lg:hidden">
+          <div className="flex lg:hidden gap-3">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
@@ -113,6 +113,45 @@ export const Navbar = () => {
               <span className="sr-only">Open main menu</span>
               <Bars3BottomRightIcon aria-hidden="true" className="h-8 w-8" />
             </button>
+
+            {isLoggedIn ? (
+              <Dropdown placement="bottom-start">
+                <DropdownTrigger>
+                  <Avatar
+                    as="button"
+                    isBordered
+                    name={user?.fullName}
+                    src="https://i.pravatar.cc/150?u=a042581f4e29026024d"
+                  />
+                </DropdownTrigger>
+                <DropdownMenu aria-label="User Actions" variant="flat">
+                  <DropdownItem key="profile" className="h-14 gap-2">
+                    <p className="font-bold">Signed in as</p>
+                    <p className="font-bold">{user?.email}</p>
+                  </DropdownItem>
+                  <DropdownItem key="settings">My Account</DropdownItem>
+                  <DropdownItem key="team_settings">Favorites</DropdownItem>
+                  <DropdownItem key="analytics">Payments</DropdownItem>
+                  <DropdownItem key="system">Order history</DropdownItem>
+                  <DropdownItem key="system">Notifications</DropdownItem>
+                  <DropdownItem key="configurations">Security</DropdownItem>
+                  <DropdownItem key="help_and_feedback">
+                    Help & Feedback
+                  </DropdownItem>
+                  <DropdownItem key="logout" color="danger" onClick={logout}>
+                    Log Out
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+            ) : (
+              <Button
+                href={siteUrls.login}
+                as={Link}
+                color="primary"
+                variant="flat">
+                Login
+              </Button>
+            )}
           </div>
           <PopoverGroup className="hidden lg:flex items-center lg:gap-x-8">
             <Link
@@ -264,7 +303,10 @@ export const Navbar = () => {
                       <DropdownItem key="help_and_feedback">
                         Help & Feedback
                       </DropdownItem>
-                      <DropdownItem key="logout" color="danger">
+                      <DropdownItem
+                        key="logout"
+                        color="danger"
+                        onClick={logout}>
                         Log Out
                       </DropdownItem>
                     </DropdownMenu>
@@ -428,7 +470,10 @@ export const Navbar = () => {
                         <DropdownItem key="help_and_feedback">
                           Help & Feedback
                         </DropdownItem>
-                        <DropdownItem key="logout" color="danger">
+                        <DropdownItem
+                          key="logout"
+                          color="danger"
+                          onClick={logout}>
                           Log Out
                         </DropdownItem>
                       </DropdownMenu>

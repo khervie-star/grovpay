@@ -1,12 +1,57 @@
 "use client";
 
+import * as React from "react";
 import Image from "next/image";
-import { FaApple, FaGooglePlay } from "react-icons/fa";
+import { FaApple, FaGooglePlay, FaMobile, FaTrain } from "react-icons/fa";
 import mockup from "@/assets/images/app-mobile-2.png";
 import { FaUserPlus, FaShareAlt, FaMoneyBillWave } from "react-icons/fa";
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import {
+  Accordion,
+  AccordionItem,
+  Button,
+  Input,
+  Tabs,
+  Tab,
+  Select,
+  SelectItem
+} from "@nextui-org/react";
+import { MdElectricBolt, MdMonitor, MdWaterDrop } from "react-icons/md";
+import { TbGasStation } from "react-icons/tb";
+import { IoWifi } from "react-icons/io5";
+import { gender, discos, states, siteUrls } from "@/config";
+import * as Yup from "yup";
+import { Formik } from "formik";
+import { useAuth } from "@/context";
+import { useRouter } from "next/navigation";
+import banner1 from "@/assets/images/banner-1.jpg";
+import banner2 from "@/assets/images/banner-2.jpg";
+import banner3 from "@/assets/images/banner-3.jpg";
+
+interface IBillDetails {
+  operator?: string;
+  state?: string;
+  serviceNumber?: string;
+  amount?: string;
+}
+
+const validationSchema = Yup.object().shape({
+  operator: Yup.string().required("First name is required"),
+  state: Yup.string().required("Last name is required"),
+  serviceNumber: Yup.string().required("Email is required"),
+  amount: Yup.string().required("Gender is required")
+});
 
 export default function Home() {
+  // const [selected, setSelected] = React.useState("mobile");
+  const router = useRouter();
+  const { isLoggedIn } = useAuth();
+  const [initialValues] = React.useState({
+    operator: "",
+    state: "",
+    serviceNumber: "",
+    amount: ""
+  });
+
   const steps = [
     {
       icon: <FaUserPlus />,
@@ -43,6 +88,306 @@ export default function Home() {
           </AccordionItem>
         </Accordion>
       </section> */}
+
+      <section>
+        <div className="w-full bg-gray-100">
+          <div className="container mx-auto p-6 lg:py-10">
+            <div className="flex flex-col lg:flex-row gap-8 items-start w-full">
+              <div className="w-full hidden lg:block lg:w-1/5">
+                <Tabs
+                  fullWidth
+                  // selectedKey={selected}
+                  // onSelectionChange={setSelected}
+                  aria-label="Options"
+                  color="primary"
+                  variant="solid"
+                  size="lg"
+                  isVertical
+                  classNames={{
+                    tabList:
+                      "gap-4 w-full relative p-0 !items-start !justify-start",
+                    cursor: "w-full",
+                    tab: "py-5",
+                    tabContent: "text-base"
+                  }}>
+                  <Tab
+                    key="mobile"
+                    title={
+                      <div className="flex items-center space-x-2">
+                        <FaMobile />
+                        <span>Mobile</span>
+                      </div>
+                    }
+                  />
+                  <Tab
+                    key="photo"
+                    title={
+                      <div className="flex items-center space-x-2">
+                        <IoWifi />
+                        <span>Broadband</span>
+                      </div>
+                    }
+                  />
+                  <Tab
+                    key="electricity"
+                    title={
+                      <div className="flex items-center space-x-2">
+                        <MdElectricBolt />
+                        <span>Electricity</span>
+                      </div>
+                    }
+                  />
+                  <Tab
+                    key="cableTV"
+                    title={
+                      <div className="flex items-center space-x-2">
+                        <MdMonitor />
+                        <span>Cable TV</span>
+                      </div>
+                    }
+                  />
+                  <Tab
+                    key="metro"
+                    title={
+                      <div className="flex items-center space-x-2">
+                        <FaTrain />
+                        <span>Metro</span>
+                      </div>
+                    }
+                  />
+                  <Tab
+                    key="gas"
+                    title={
+                      <div className="flex items-center space-x-2">
+                        <TbGasStation />
+                        <span>Gas</span>
+                      </div>
+                    }
+                  />
+                  <Tab
+                    key="water"
+                    title={
+                      <div className="flex items-center space-x-2">
+                        <MdWaterDrop />
+                        <span>Water</span>
+                      </div>
+                    }
+                  />
+                </Tabs>
+              </div>
+              <div className="w-full block lg:hidden overflow-auto">
+                <Tabs
+                  // selectedKey={selected}
+                  // onSelectionChange={setSelected}
+                  aria-label="Options"
+                  color="primary"
+                  variant="bordered"
+                  size="lg"
+                  classNames={{
+                    tabList:
+                      "gap-4 w-full relative p-0 !items-start !justify-start",
+                    cursor: "w-full",
+                    tab: "py-5",
+                    tabContent: "text-base"
+                  }}>
+                  <Tab
+                    key="electricity"
+                    title={
+                      <div className="flex items-center space-x-2">
+                        <MdElectricBolt />
+                        <span>Electricity</span>
+                      </div>
+                    }
+                  />
+                  <Tab
+                    key="mobile"
+                    title={
+                      <div className="flex items-center space-x-2">
+                        <FaMobile />
+                        <span>Mobile</span>
+                      </div>
+                    }
+                  />
+                  <Tab
+                    key="photo"
+                    title={
+                      <div className="flex items-center space-x-2">
+                        <IoWifi />
+                        <span>Broadband</span>
+                      </div>
+                    }
+                  />
+
+                  <Tab
+                    key="cableTV"
+                    title={
+                      <div className="flex items-center space-x-2">
+                        <MdMonitor />
+                        <span>Cable TV</span>
+                      </div>
+                    }
+                  />
+                  <Tab
+                    key="metro"
+                    title={
+                      <div className="flex items-center space-x-2">
+                        <FaTrain />
+                        <span>Metro</span>
+                      </div>
+                    }
+                  />
+                  <Tab
+                    key="gas"
+                    title={
+                      <div className="flex items-center space-x-2">
+                        <TbGasStation />
+                        <span>Gas</span>
+                      </div>
+                    }
+                  />
+                  <Tab
+                    key="water"
+                    title={
+                      <div className="flex items-center space-x-2">
+                        <MdWaterDrop />
+                        <span>Water</span>
+                      </div>
+                    }
+                  />
+                </Tabs>
+              </div>
+              <div className="p-5 lg:p-8 shadow border-md bg-white w-full lg:w-1/2">
+                <p className="text-[24px] font-bold mb-6">
+                  Pay your electricity bill
+                </p>
+                <Formik
+                  initialValues={initialValues}
+                  validationSchema={validationSchema}
+                  onSubmit={(values: IBillDetails) => {
+                    console.log(values);
+                  }}>
+                  {({
+                    errors,
+                    touched,
+                    handleChange,
+                    handleBlur,
+                    handleSubmit
+                  }) => (
+                    <form
+                      className="flex flex-col gap-6"
+                      onSubmit={handleSubmit}>
+                      <div className="flex flex-col gap-6">
+                        <Select
+                          name="operator"
+                          label="Your operator"
+                          labelPlacement={"outside"}
+                          placeholder="Choose your operator"
+                          size="lg"
+                          radius={"sm"}
+                          isInvalid={
+                            Boolean(errors.operator) && touched.operator
+                          }
+                          errorMessage={errors.operator}
+                          onBlur={handleBlur}
+                          onChange={handleChange}>
+                          {discos.map((disco) => (
+                            <SelectItem key={disco.key}>
+                              {disco.label}
+                            </SelectItem>
+                          ))}
+                        </Select>
+                        <Select
+                          name="state"
+                          label="Your state"
+                          labelPlacement={"outside"}
+                          placeholder="Choose your state"
+                          size="lg"
+                          radius={"sm"}
+                          isInvalid={Boolean(errors.state) && touched.state}
+                          errorMessage={errors.state}
+                          onBlur={handleBlur}
+                          onChange={handleChange}>
+                          {states.map((state) => (
+                            <SelectItem key={state}>{state}</SelectItem>
+                          ))}
+                        </Select>
+                        <Input
+                          name="serviceNumber"
+                          type="number"
+                          label="Service number"
+                          placeholder="Enter service number"
+                          labelPlacement="outside"
+                          size="lg"
+                          radius={"sm"}
+                          isInvalid={
+                            Boolean(errors.serviceNumber) &&
+                            touched.serviceNumber
+                          }
+                          errorMessage={errors.serviceNumber}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                        />
+                        <Input
+                          name="amount"
+                          type="number"
+                          label="Amount"
+                          placeholder="Enter amount"
+                          labelPlacement="outside"
+                          size="lg"
+                          radius={"sm"}
+                          isInvalid={Boolean(errors.amount) && touched.amount}
+                          errorMessage={errors.amount}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                          startContent={
+                            <div className="pointer-events-none flex items-center">
+                              <span className="text-default-400 text-small">
+                                ₦
+                              </span>
+                            </div>
+                          }
+                        />
+                        {isLoggedIn ? (
+                          <Button
+                            // isDisabled={onRegisterUser.isPending}
+                            // isLoading={onRegisterUser.isPending}
+                            type="submit"
+                            fullWidth
+                            className="!rounded-[8px] !bg-app_green !text-white !py-3">
+                            Continue
+                          </Button>
+                        ) : (
+                          <Button
+                            onClick={() => router.push(siteUrls.login)}
+                            type="button"
+                            fullWidth
+                            className="!rounded-[8px] !bg-app_green !text-white !py-3">
+                            Login to continue
+                          </Button>
+                        )}
+                      </div>
+                    </form>
+                  )}
+                </Formik>
+              </div>{" "}
+              <div className="p-5 lg:p-8 shadow border-md bg-white w-full lg:w-[30%]">
+                <div className="flex flex-col gap-4">
+                  <img
+                    src={banner1.src}
+                    className="w-full h-[150px] object-cover"
+                    alt=""
+                  />
+                  <img
+                    src={banner2.src}
+                    className="w-full h-[150px] object-cover"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section className="py-16 bg-white shadow-lg">
         <div className="container mx-auto max-w-6xl px-4">
           <div className="">
