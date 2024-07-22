@@ -6,8 +6,6 @@ import { FaApple, FaGooglePlay, FaMobile, FaTrain } from "react-icons/fa";
 import mockup from "@/assets/images/app-mobile-2.png";
 import { FaUserPlus, FaShareAlt, FaMoneyBillWave } from "react-icons/fa";
 import {
-  Accordion,
-  AccordionItem,
   Button,
   Input,
   Tabs,
@@ -37,8 +35,8 @@ interface IBillDetails {
 const validationSchema = Yup.object().shape({
   operator: Yup.string().required("First name is required"),
   state: Yup.string().required("Last name is required"),
-  serviceNumber: Yup.string().required("Email is required"),
-  amount: Yup.string().required("Gender is required")
+  customerId: Yup.string().required("Customer ID is required"),
+  amount: Yup.string().required("Amount is required")
 });
 
 export default function Home() {
@@ -48,7 +46,7 @@ export default function Home() {
   const [initialValues] = React.useState({
     operator: "",
     state: "",
-    serviceNumber: "",
+    customerId: "",
     amount: ""
   });
 
@@ -312,10 +310,10 @@ export default function Home() {
                           ))}
                         </Select>
                         <Input
-                          name="serviceNumber"
+                          name="customerId"
                           type="number"
-                          label="Service number"
-                          placeholder="Enter service number"
+                          label={`Customer Id`}
+                          placeholder="Enter customer Id"
                           labelPlacement="outside"
                           size="lg"
                           radius={"sm"}
