@@ -10,6 +10,7 @@ import {
   Input,
   Tabs,
   Tab,
+  Tooltip,
   Select,
   SelectItem
 } from "@nextui-org/react";
@@ -24,6 +25,7 @@ import { useRouter } from "next/navigation";
 import banner1 from "@/assets/images/banner-1.jpg";
 import banner2 from "@/assets/images/banner-2.jpg";
 import banner3 from "@/assets/images/banner-3.jpg";
+import { QuestionMarkCircleIcon } from "@heroicons/react/24/solid";
 
 interface IBillDetails {
   operator?: string;
@@ -312,7 +314,16 @@ export default function Home() {
                         <Input
                           name="customerId"
                           type="number"
-                          label={`Customer Id`}
+                          label={
+                            <div className="flex gap-2 items-center cursor-pointer">
+                              Customer Id
+                              <Tooltip
+                                showArrow={true}
+                                content="This can be your meter number, phone number, email address or account number">
+                                <QuestionMarkCircleIcon className="w-4 h-4 text-gray-500" />
+                              </Tooltip>
+                            </div>
+                          }
                           placeholder="Enter customer Id"
                           labelPlacement="outside"
                           size="lg"
