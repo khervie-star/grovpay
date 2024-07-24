@@ -37,7 +37,7 @@ import {
   DropdownTrigger,
   User
 } from "@nextui-org/react";
-import { siteUrls } from "@/config";
+import { rechargeAndBillingTypes, siteUrls } from "@/config";
 import Link from "next/link";
 import { useAuth, useUser } from "@/context";
 import { useRouter } from "next/router";
@@ -77,7 +77,7 @@ const products = [
 ];
 const callsToAction = [
   { name: "Watch demo", href: "#", icon: PlayCircleIcon },
-  { name: "Contact sales", href: "#", icon: PhoneIcon }
+  { name: "Contact", href: siteUrls.contact, icon: PhoneIcon }
 ];
 
 export const Navbar = () => {
@@ -170,22 +170,26 @@ export const Navbar = () => {
                 transition
                 className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in">
                 <div className="p-4">
-                  {products.map((item) => (
+                  {rechargeAndBillingTypes.map((item) => (
                     <div
-                      key={item.name}
+                      key={item.category}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-base leading-6 hover:bg-gray-50">
                       <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                         <item.icon
                           aria-hidden="true"
-                          className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                          className="h-6 w-6 text-gray-600 group-hover:text-app_green"
                         />
                       </div>
                       <div className="flex-auto">
-                        <a href={item.href} className="block  text-gray-900">
-                          {item.name}
+                        <a href={"#"} className="block  text-gray-900">
+                          {item.category}
                           <span className="absolute inset-0" />
                         </a>
-                        <p className="mt-1 text-gray-600">{item.description}</p>
+                        <p className="mt-1 text-gray-600">
+                          {item.types.map((item) => {
+                            return `${item}, `;
+                          })}
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -316,14 +320,14 @@ export const Navbar = () => {
                     />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
-                    {[...products, ...callsToAction].map((item) => (
+                    {[...rechargeAndBillingTypes].map((item) => (
                       <DisclosureButton
                         onClick={() => setMobileMenuOpen(false)}
-                        key={item.name}
+                        key={item.category}
                         as="a"
-                        href={item.href}
+                        href={"#"}
                         className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                        {item.name}
+                        {item.category}
                       </DisclosureButton>
                     ))}
                   </DisclosurePanel>
