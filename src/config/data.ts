@@ -112,25 +112,25 @@ export const rechargeAndBillingTypes: RechargeType[] = [
       "Streaming service subscriptions"
     ]
   },
-  {
-    category: "Financial Services",
-    icon: CreditCardIcon,
-    types: [
-      "Credit card bill payments",
-      "Loan EMI payments",
-      "Insurance premium payments"
-    ]
-  },
+  // {
+  //   category: "Financial Services",
+  //   icon: CreditCardIcon,
+  //   types: [
+  //     "Credit card bill payments",
+  //     "Loan EMI payments",
+  //     "Insurance premium payments"
+  //   ]
+  // },
   {
     category: "Education",
     icon: AcademicCapIcon,
     types: ["School/College fee payments", "Online course fee payments"]
   },
-  {
-    category: "Government Payments",
-    icon: BuildingLibraryIcon,
-    types: ["Property tax", "Vehicle registration fees", "Traffic fines"]
-  },
+  // {
+  //   category: "Government Payments",
+  //   icon: BuildingLibraryIcon,
+  //   types: ["Property tax", "Vehicle registration fees", "Traffic fines"]
+  // },
   {
     category: "Travel",
     icon: TruckIcon,
@@ -140,12 +140,12 @@ export const rechargeAndBillingTypes: RechargeType[] = [
     category: "Entertainment",
     icon: TicketIcon,
     types: ["Movie ticket bookings", "Event ticket purchases", "Gaming credits"]
-  },
-  {
-    category: "E-commerce",
-    icon: ShoppingCartIcon,
-    types: ["Gift card recharges", "Wallet top-ups"]
   }
+  // {
+  //   category: "E-commerce",
+  //   icon: ShoppingCartIcon,
+  //   types: ["Gift card recharges", "Wallet top-ups"]
+  // }
   // {
   //   category: "Healthcare",
   //   icon: HeartIcon,

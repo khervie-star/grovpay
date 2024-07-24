@@ -185,7 +185,7 @@ export const Navbar = () => {
                           {item.category}
                           <span className="absolute inset-0" />
                         </a>
-                        <p className="mt-1 text-gray-600">
+                        <p className="mt-1 text-[12px] text-gray-500">
                           {item.types.map((item) => {
                             return `${item}, `;
                           })}
