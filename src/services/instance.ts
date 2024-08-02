@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 let axiosInstance: any;
 // const config = urlConfig("8080");
 // console.log(config.baseUrl);
-// const BASE_URL = config.baseUrl;
+const BASE_URL = "https://npv-api.pario.ng/api/v1";
 
 const setupAxiosInstance = (baseUrl: string) => {
   // if (!axiosInstance) {
@@ -65,6 +65,6 @@ const setupAxiosInstance = (baseUrl: string) => {
   return axiosInstance;
 };
 
-export const getAxiosInstance = (baseUrl: string) => {
-  return setupAxiosInstance(baseUrl);
+export const getAxiosInstance = () => {
+  return setupAxiosInstance(BASE_URL);
 };

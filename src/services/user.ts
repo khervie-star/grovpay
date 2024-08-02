@@ -1,11 +1,9 @@
 import { getAxiosInstance } from "./instance";
 
 const serviceName = "user";
-// const port = "8592";
-const baseUrl = "https://161.35.9.144:8592/api/v1";
 
 export const userLogin = async (data: any) => {
-  const axiosInstance = getAxiosInstance(baseUrl);
+  const axiosInstance = getAxiosInstance();
 
   const response = await axiosInstance({
     url: `${serviceName}/login`,
@@ -17,7 +15,7 @@ export const userLogin = async (data: any) => {
 };
 
 export const userRegistration = async (data: any) => {
-  const axiosInstance = getAxiosInstance(baseUrl);
+  const axiosInstance = getAxiosInstance();
 
   const response = await axiosInstance({
     url: `${serviceName}/registration/step1`,
@@ -30,7 +28,7 @@ export const userRegistration = async (data: any) => {
 
 // Get User
 export const getUserByEmail = async (data: any) => {
-  const axiosInstance = getAxiosInstance(baseUrl);
+  const axiosInstance = getAxiosInstance();
 
   const response = await axiosInstance({
     url: `${serviceName}/email/${data.userEmail}`,
@@ -41,7 +39,7 @@ export const getUserByEmail = async (data: any) => {
 };
 
 export const getUserById = async (data: any) => {
-  const axiosInstance = getAxiosInstance(baseUrl);
+  const axiosInstance = getAxiosInstance();
 
   const response = await axiosInstance({
     url: `${serviceName}/id/${data.userId}`,
