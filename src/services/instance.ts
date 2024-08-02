@@ -12,7 +12,7 @@ const setupAxiosInstance = (baseUrl: string) => {
   // if (!axiosInstance) {
   axiosInstance = axios.create({
     baseURL: baseUrl,
-    withCredentials: true,
+    withCredentials: false,
     headers: {
       "Content-Type": "application/json"
       // "Access-Control-Allow-Origin": "*"
