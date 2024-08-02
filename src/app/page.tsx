@@ -26,19 +26,24 @@ import banner1 from "@/assets/images/banner-1.jpg";
 import banner2 from "@/assets/images/banner-2.jpg";
 import banner3 from "@/assets/images/banner-3.jpg";
 import { QuestionMarkCircleIcon } from "@heroicons/react/24/solid";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { fetchBillersByCategory, validateCustomer } from "@/services/biller";
+import toast from "react-hot-toast";
 
 interface IBillDetails {
-  operator?: string;
+  billerCode?: string;
   state?: string;
   serviceNumber?: string;
   amount?: string;
+  paymentItemCode?: string;
 }
 
 const validationSchema = Yup.object().shape({
-  operator: Yup.string().required("First name is required"),
-  state: Yup.string().required("Last name is required"),
+  billerCode: Yup.string().required("Choose your operator"),
+  // state: Yup.string().required("Last name is required"),
   customerId: Yup.string().required("Customer ID is required"),
-  amount: Yup.string().required("Amount is required")
+  amount: Yup.string().required("Amount is required"),
+  paymentItemCode: Yup.string().required("Enter payment item code")
 });
 
 export default function Home() {
@@ -46,10 +51,28 @@ export default function Home() {
   const router = useRouter();
   const { isLoggedIn } = useAuth();
   const [initialValues] = React.useState({
-    operator: "",
+    billerCode: "",
     state: "",
     customerId: "",
-    amount: ""
+    amount: "",
+    paymentItemCode: ""
+  });
+
+  const { data: electricityBiller } = useQuery({
+    queryKey: ["fetchBillersByCategory"],
+    queryFn: () => fetchBillersByCategory({ categoryId: "ELECTRICITY" })
+  });
+
+  const onValidateCustomer = useMutation({
+    mutationKey: ["validateCustomer"],
+    mutationFn: validateCustomer,
+    onSuccess() {
+      toast.success("Successful");
+    },
+    onError(error: any) {
+      console.log(error);
+      toast.error(error?.response?.data?.responseMessage);
+    }
   });
 
   const steps = [
@@ -70,8 +93,7 @@ export default function Home() {
     }
   ];
 
-  const defaultContent =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+  console.log(electricityBiller);
 
   return (
     <main className="">
@@ -265,6 +287,7 @@ export default function Home() {
                   validationSchema={validationSchema}
                   onSubmit={(values: IBillDetails) => {
                     console.log(values);
+                    onValidateCustomer.mutate(values);
                   }}>
                   {({
                     errors,
@@ -278,25 +301,27 @@ export default function Home() {
                       onSubmit={handleSubmit}>
                       <div className="flex flex-col gap-6">
                         <Select
-                          name="operator"
-                          label="Your operator"
+                          name="billerCode"
+                          label="Operator"
                           labelPlacement={"outside"}
                           placeholder="Choose your operator"
                           size="lg"
                           radius={"sm"}
                           isInvalid={
-                            Boolean(errors.operator) && touched.operator
+                            Boolean(errors.billerCode) && touched.billerCode
                           }
-                          errorMessage={errors.operator}
+                          errorMessage={errors.billerCode}
                           onBlur={handleBlur}
                           onChange={handleChange}>
-                          {discos.map((disco) => (
-                            <SelectItem key={disco.key}>
-                              {disco.label}
-                            </SelectItem>
-                          ))}
+                          {electricityBiller
+                            ? electricityBiller.map((biller: any) => (
+                                <SelectItem key={biller.billerCode}>
+                                  {biller.name}
+                                </SelectItem>
+                              ))
+                            : []}
                         </Select>
-                        <Select
+                        {/* <Select
                           name="state"
                           label="Your state"
                           labelPlacement={"outside"}
@@ -310,7 +335,7 @@ export default function Home() {
                           {states.map((state) => (
                             <SelectItem key={state}>{state}</SelectItem>
                           ))}
-                        </Select>
+                        </Select> */}
                         <Input
                           name="customerId"
                           type="number"
@@ -356,10 +381,26 @@ export default function Home() {
                             </div>
                           }
                         />
+                        <Input
+                          name="paymentItemCode"
+                          type="number"
+                          label="Payment item code"
+                          placeholder="Enter amount"
+                          labelPlacement="outside"
+                          size="lg"
+                          radius={"sm"}
+                          isInvalid={
+                            Boolean(errors.paymentItemCode) &&
+                            touched.paymentItemCode
+                          }
+                          errorMessage={errors.paymentItemCode}
+                          onBlur={handleBlur}
+                          onChange={handleChange}
+                        />
                         {isLoggedIn ? (
                           <Button
-                            // isDisabled={onRegisterUser.isPending}
-                            // isLoading={onRegisterUser.isPending}
+                            isDisabled={onValidateCustomer.isPending}
+                            isLoading={onValidateCustomer.isPending}
                             type="submit"
                             fullWidth
                             className="!rounded-[8px] !bg-app_green !text-white !py-3">
